@@ -1,94 +1,86 @@
-imort Foundation
+import Foundation
 import UIKit
 
 struct EndOfGameInformation {
     let win: Bool
     let title: String
     let cntErrors: Int
-    var finalMessage: String{
+    var finalMessage: String {
         return """
-
-        win: \(win) in \(cntErrors)/7.
+        Win: \(win) in \(cntErrors)/7.
         Title was : \(title)
         """
     }
 }
+
 class JeuPendu {
-
-
-    static let shared JeuPendu = JeuPendu()
+    static let shared = JeuPendu()
 
     private init(){}
-    
 
-    private let maxErreur: Int =7
-    private var nbErreurs: Int =0
-    private var titreADeviner: [Character] = []
-    private var indexTrouves: [Bool] = []
-    private var lettresUtilisateurs: [Character] = []
-    private var filmADeviner: Film?
+    private let maxErrors: Int = 7
+    private var errorCount: Int = 0
+    private var titleToGuess: [Character] = []
+    private var foundIndices: [Bool] = []
+    private var userLetters: [Character] = []
+    private var movieToGuess: Movie?
 
-    var devinette: String{
-        let arr = indexTrouves.indices.map {indexTrouves[$0]
-        ^ titreADeviner[$0]: "#"}
+    // Assuming that you have a file named ImagesSequenceData with a static variable imageNames
+    private let imageNamesSequence = ImagesSequenceData.imageNames
+
+    var guess: String {
+        let arr = foundIndices.indices.map {foundIndices[$0] ? titleToGuess[$0] : "#"}
         return String(arr)
-        }
-
-    var lettreUtilisees: String {
-        return Array(lettresUtilisateurs).map
-        {String($0).joined(separator:", ")}
-        }
-    
-    var erreurs: String {
-        return "\(nbErreurs) / \(maxErreur)/"
     }
 
-    var image : UIImage{
-        return UIImage(named: imageNamesSequence[nbErreurs])!
+    var usedLetters: String {
+        return userLetters.map { String($0) }.joined(separator:", ")
     }
 
-    func jouer(avec film: Film){
-        filmADeviner = film
-        titreADeviner = Array(film.Title)
-        indexTrouves = Array(repeating : false, count:
-        titreADeviner.count)
+    var errors: String {
+        return "\(errorCount) / \(maxErrors)"
+    }
 
-        titreADeviner.enumerated().forEach { (idx, lettre) in
-        if !("abcdefghijklmnopqrstuvwxyz"
-        .contains(lettre.lowercased())) {
-            indexTrouves[idx] = true
-        }print("DB : jouer()", devinette)
-        nbErreurs = 0
+    var image : UIImage {
+        return UIImage(named: imageNamesSequence[errorCount])!
+    }
+
+    func play(with movie: Movie) {
+        movieToGuess = movie
+        titleToGuess = Array(movie.Title)
+        foundIndices = Array(repeating: false, count: titleToGuess.count)
+
+        titleToGuess.enumerated().forEach { (idx, letter) in
+            if !("abcdefghijklmnopqrstuvwxyz".contains(letter.lowercased())) {
+                foundIndices[idx] = true
+            }
+        }
+        print("DB : play()", guess)
+        errorCount = 0
+    }
+
+    func verify(letter: Character) {
+        userLetters.append(letter)
+        var found = false
+
+        titleToGuess.enumerated().forEach { (idx, mysteryLetter) in
+            if mysteryLetter.lowercased() == letter.lowercased() {
+                foundIndices[idx] = true
+                found = true
+            }
         }
 
-    func verifier(lettre: Character) {
-        lettresUtilisateurs.append(lettre)
-        var trouvee = false
-
-        titreADeviner.enumerated().forEach { (idx, lettreMystere)
-        in
-        if lettreMystere.lowercased() ==
-        lettre.lowercased(){
-            indexTrouves[idx] = true
-            trouvee = true
+        if !found {
+            errorCount += 1
         }
     }
 
-    if !trouvee {
-        nbErreurs +=1
-    }
-       }
-
-    func verifierFinDePartie() -> String? {
-        if nbErreurs == maxErreur {
-            return EndOfGameInformation(win : false, title:
-            String(titreADeviner), cntErrors:nbErreurs).finalMessage
-        } else if indexTrouves.allSatisfy({$0}) {
-            return EndOfGameInformation(win : true, title: String(titreADeviner), cntErrors:nbErreurs).finalMessage
+    func verifyEndOfGame() -> String? {
+        if errorCount == maxErrors {
+            return EndOfGameInformation(win: false, title: String(titleToGuess), cntErrors: errorCount).finalMessage
+        } else if foundIndices.allSatisfy({$0}) {
+            return EndOfGameInformation(win: true, title: String(titleToGuess), cntErrors: errorCount).finalMessage
         }
         return nil
     }
-
 }
-}
-
