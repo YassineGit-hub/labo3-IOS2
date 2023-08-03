@@ -25,9 +25,15 @@ struct MovieDownloader {
             if let movie = try? decoder.decode(Movie.self, from: data) {
                 completion(movie)
             } else {
-                print("Erreur lors de la décomposition du film")
-                completion(nil)
+                do {
+                    let movie = try decoder.decode(Movie.self, from: data)
+                    completion(movie)
+                } catch let error {
+                    print("Erreur lors de la décomposition du film: \(error)")
+                    completion(nil)
+                }
             }
+
         }.resume()
     }
 }

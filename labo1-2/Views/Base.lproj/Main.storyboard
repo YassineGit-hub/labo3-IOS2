@@ -43,6 +43,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Valider">
                                     <color key="baseBackgroundColor" systemColor="systemPinkColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="validateBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="llr-fC-a3f"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lettres utlisees :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifK-oH-B0y">
                                 <rect key="frame" x="36" y="290" width="125" height="21"/>
@@ -80,6 +83,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                     </view>
+                    <connections>
+                        <outlet property="devinetteLabel" destination="nSg-O1-PDL" id="QwR-jS-mmH"/>
+                        <outlet property="hangmanView" destination="z20-tR-yiF" id="OQP-kH-BJj"/>
+                        <outlet property="pointsLabel" destination="asE-Fm-54K" id="sWc-cT-VfO"/>
+                        <outlet property="userInputField" destination="RJg-ge-tIh" id="3lb-U1-uTL"/>
+                        <outlet property="userUsedLetters" destination="ifK-oH-B0y" id="Rpf-F7-tUS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -18,68 +18,68 @@ class JeuPendu {
 
     private init(){}
 
-    private let maxErrors: Int = 7
-    private var errorCount: Int = 0
-    private var titleToGuess: [Character] = []
-    private var foundIndices: [Bool] = []
-    private var userLetters: [Character] = []
-    private var movieToGuess: Movie?
+    private let maxErreur: Int = 7
+    private var nbErreurs: Int = 0
+    private var titreADeviner: [Character] = []
+    private var indexTrouves: [Bool] = []
+    private var lettresUtilisateurs: [Character] = []
+    private var filmADeviner: Movie?
 
     // Assuming that you have a file named ImagesSequenceData with a static variable imageNames
     private let imageNamesSequence = ImagesSequenceData.imageNames
 
-    var guess: String {
-        let arr = foundIndices.indices.map {foundIndices[$0] ? titleToGuess[$0] : "#"}
+    var devinette: String {
+        let arr = indexTrouves.indices.map {indexTrouves[$0] ? titreADeviner[$0] : "#"}
         return String(arr)
     }
 
-    var usedLetters: String {
-        return userLetters.map { String($0) }.joined(separator:", ")
+    var lettresUtilisees: String {
+        return lettresUtilisateurs.map { String($0) }.joined(separator:", ")
     }
 
-    var errors: String {
-        return "\(errorCount) / \(maxErrors)"
+    var erreurs: String {
+        return "\(nbErreurs) / \(maxErreur)"
     }
 
     var image : UIImage {
-        return UIImage(named: imageNamesSequence[errorCount])!
+        return UIImage(named: imageNamesSequence[nbErreurs])!
     }
 
-    func play(with movie: Movie) {
-        movieToGuess = movie
-        titleToGuess = Array(movie.Title)
-        foundIndices = Array(repeating: false, count: titleToGuess.count)
+    func jouer(avec film: Movie) {
+        filmADeviner = film
+        titreADeviner = Array(film.Title)
+        indexTrouves = Array(repeating: false, count: titreADeviner.count)
 
-        titleToGuess.enumerated().forEach { (idx, letter) in
-            if !("abcdefghijklmnopqrstuvwxyz".contains(letter.lowercased())) {
-                foundIndices[idx] = true
+        titreADeviner.enumerated().forEach { (idx, lettre) in
+            if !("abcdefghijklmnopqrstuvwxyz".contains(lettre.lowercased())) {
+                indexTrouves[idx] = true
             }
         }
-        print("DB : play()", guess)
-        errorCount = 0
+        print("DB : jouer()", devinette)
+        nbErreurs = 0
     }
 
-    func verify(letter: Character) {
-        userLetters.append(letter)
-        var found = false
+    func verifier(lettre: Character) {
+        lettresUtilisateurs.append(lettre)
+        var trouvee = false
 
-        titleToGuess.enumerated().forEach { (idx, mysteryLetter) in
-            if mysteryLetter.lowercased() == letter.lowercased() {
-                foundIndices[idx] = true
-                found = true
+        titreADeviner.enumerated().forEach { (idx, lettreMystere) in
+            if lettreMystere.lowercased() == lettre.lowercased() {
+                indexTrouves[idx] = true
+                trouvee = true
             }
         }
 
-        if !found {
-            errorCount += 1
+        if !trouvee {
+            nbErreurs += 1
         }
     }
 
-    func verifyEndOfGame() -> String? {
-        if errorCount == maxErrors {
-            return EndOfGameInformation(win: false, title: String(titleToGuess), cntErrors: errorCount).finalMessage
-        } else if foundIndices.allSatisfy({$0}) {
-            return EndOfGameInformation(win: true, title: String(titleToGuess), cntErrors: errorCount).finalMessage
+    func verifierFinDePartie() -> String? {
+        if nbErreurs == maxErreur {
+            return EndOfGameInformation(win: false, title: String(titreADeviner), cntErrors: nbErreurs).finalMessage
+        } else if indexTrouves.allSatisfy({$0}) {
+            return EndOfGameInformation(win: true, title: String(titreADeviner), cntErrors: nbErreurs).finalMessage
         }
         return nil
     }
