@@ -7,15 +7,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var userInputField: UITextField!
     @IBOutlet weak var userUsedLetters: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
-    @IBOutlet weak var hangmanView: UIImageView!
+
     @IBOutlet weak var releaseYearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var firstDirectorLabel: UILabel!
-    @IBOutlet weak var secondDirectorLabel: UILabel!
-    @IBOutlet weak var firstActorLabel: UILabel!
-    @IBOutlet weak var secondActorLabel: UILabel!
-    @IBOutlet weak var thirdActorLabel: UILabel!
+    @IBOutlet weak var directorsLabel: UILabel!
+    @IBOutlet weak var actorsLabel: UILabel!
 
     let movieDownloader = MovieDownloader()
     var currentMovie: Movie?
@@ -24,6 +21,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         movieDownloader.getRandomMovie { movie in
+            print("Downloaded movie: \(movie)");
             guard let movie = movie else { return }
             self.currentMovie = movie
             JeuPendu.shared.jouer(avec: movie)
@@ -63,43 +61,32 @@ class ViewController: UIViewController {
         let errorCountString = JeuPendu.shared.erreurs
         pointsLabel.text = errorCountString
 
-        if let errorCount = Int(errorCountString) {
-            switch errorCount {
-            case 2:
-                releaseYearLabel.text = JeuPendu.shared.hints
-            case 4:
-                ratingLabel.text = JeuPendu.shared.hints
-                genreLabel.text = JeuPendu.shared.hints
-            case 5:
-                displayDirectorsAndActors()
-            default:
-                break
-            }
+        guard let errorCount = Int(errorCountString), let movie = currentMovie else {
+            print("Guard statement in updateMovieHintsBasedOnErrorCount failed")
+            return
         }
-    }
-
-    func displayDirectorsAndActors() {
-        let hints = JeuPendu.shared.hints
-        let hintsLines = hints.split(separator: "\n")
+    
+        print("Error count: \(errorCount)")
+    
+        switch errorCount {
+        case 2:
+            print("Released: \(movie.Released ?? "No data")")
+            releaseYearLabel.text = movie.Released
         
-        if hintsLines.count >= 3 {
-            let directorsLine = hintsLines[1]
-            let actorsLine = hintsLines[2]
-            let directors = directorsLine.replacingOccurrences(of: "Directors: ", with: "").split(separator: ",")
-            let actors = actorsLine.replacingOccurrences(of: "Actors: ", with: "").split(separator: ",")
-
-            firstDirectorLabel.text = directors.first?.trimmingCharacters(in: .whitespacesAndNewlines)
-            if directors.count > 1 {
-                secondDirectorLabel.text = directors[1].trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-
-            firstActorLabel.text = actors.first?.trimmingCharacters(in: .whitespacesAndNewlines)
-            if actors.count > 1 {
-                secondActorLabel.text = actors[1].trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-            if actors.count > 2 {
-                thirdActorLabel.text = actors[2].trimmingCharacters(in: .whitespacesAndNewlines)
-            }
+        case 4:
+            print("Rated: \(movie.Rated ?? "No data")")
+            print("Genre: \(movie.Genre ?? "No data")")
+            ratingLabel.text = movie.Rated
+            genreLabel.text = movie.Genre
+        
+        case 5:
+            print("Director: \(movie.Director ?? "No data")")
+            print("Actors: \(movie.Actors ?? "No data")")
+            directorsLabel.text = movie.Director?.components(separatedBy: ",").prefix(2).joined(separator: ", ")
+            actorsLabel.text = movie.Actors?.components(separatedBy: ",").prefix(3).joined(separator: ", ").trimmingCharacters(in: .whitespaces)
+        
+        default:
+            break
         }
     }
 }

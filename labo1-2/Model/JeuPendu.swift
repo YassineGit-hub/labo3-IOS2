@@ -1,4 +1,3 @@
-
 import Foundation
 
 struct EndOfGameInformation {
@@ -78,19 +77,24 @@ class JeuPendu {
         nbErreurs = 0
     }
 
-    func verifier(lettre: Character) {
-        lettresUtilisateurs.append(lettre)
-        var trouvee = false
+    func verifier(lettre: String) {
+        if let character = lettre.first, character.isLetter {
+            let characterLowercased = character.lowercased()
+            if let firstLowercasedChar = characterLowercased.first {
+                lettresUtilisateurs.append(firstLowercasedChar)
+                var trouvee = false
 
-        titreADeviner.enumerated().forEach { (idx, lettreMystere) in
-            if lettreMystere.lowercased() == lettre.lowercased() {
-                indexTrouves[idx] = true
-                trouvee = true
+                titreADeviner.enumerated().forEach { (idx, lettreMystere) in
+                    if lettreMystere.lowercased() == characterLowercased {
+                        indexTrouves[idx] = true
+                        trouvee = true
+                    }
+                }
+
+                if !trouvee {
+                    nbErreurs += 1
+                }
             }
-        }
-
-        if !trouvee {
-            nbErreurs += 1
         }
     }
 
@@ -108,3 +112,4 @@ class JeuPendu {
         return filmADeviner
     }
 }
+
