@@ -15,7 +15,6 @@
 		B6A581602A7B21A700103E04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A5815E2A7B21A700103E04 /* LaunchScreen.storyboard */; };
 		B6A581862A7B22C500103E04 /* MovieDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A581852A7B22C500103E04 /* MovieDownloader.swift */; };
 		B6A581882A7B232E00103E04 /* listeFilms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A581872A7B232E00103E04 /* listeFilms.swift */; };
-		B6A5818A2A7B23EA00103E04 /* ImagesSequenceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A581892A7B23EA00103E04 /* ImagesSequenceData.swift */; };
 		B6A5818C2A7B242400103E04 /* JeuPendu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A5818B2A7B242400103E04 /* JeuPendu.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B6A581502A7B21A600103E04 /* labo1-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "labo1-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A581502A7B21A600103E04 /* labo2-IOS2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "labo2-IOS2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A581532A7B21A600103E04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6A581552A7B21A600103E04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B6A581572A7B21A600103E04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,11 +44,10 @@
 		B6A5815C2A7B21A700103E04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6A5815F2A7B21A700103E04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6A581612A7B21A700103E04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6A581662A7B21A800103E04 /* labo1-2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "labo1-2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6A581702A7B21A800103E04 /* labo1-2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "labo1-2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A581662A7B21A800103E04 /* labo2-IOS2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "labo2-IOS2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A581702A7B21A800103E04 /* labo2-IOS2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "labo2-IOS2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A581852A7B22C500103E04 /* MovieDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDownloader.swift; sourceTree = "<group>"; };
 		B6A581872A7B232E00103E04 /* listeFilms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listeFilms.swift; sourceTree = "<group>"; };
-		B6A581892A7B23EA00103E04 /* ImagesSequenceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesSequenceData.swift; sourceTree = "<group>"; };
 		B6A5818B2A7B242400103E04 /* JeuPendu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeuPendu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,9 +87,9 @@
 		B6A581512A7B21A600103E04 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B6A581502A7B21A600103E04 /* labo1-2.app */,
-				B6A581662A7B21A800103E04 /* labo1-2Tests.xctest */,
-				B6A581702A7B21A800103E04 /* labo1-2UITests.xctest */,
+				B6A581502A7B21A600103E04 /* labo2-IOS2.app */,
+				B6A581662A7B21A800103E04 /* labo2-IOS2Tests.xctest */,
+				B6A581702A7B21A800103E04 /* labo2-IOS2UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,7 +111,6 @@
 			children = (
 				B6A581852A7B22C500103E04 /* MovieDownloader.swift */,
 				B6A581872A7B232E00103E04 /* listeFilms.swift */,
-				B6A581892A7B23EA00103E04 /* ImagesSequenceData.swift */,
 				B6A5818B2A7B242400103E04 /* JeuPendu.swift */,
 			);
 			path = Model;
@@ -149,9 +146,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B6A5814F2A7B21A600103E04 /* labo1-2 */ = {
+		B6A5814F2A7B21A600103E04 /* labo2-IOS2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6A5817A2A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo1-2" */;
+			buildConfigurationList = B6A5817A2A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo2-IOS2" */;
 			buildPhases = (
 				B6A5814C2A7B21A600103E04 /* Sources */,
 				B6A5814D2A7B21A600103E04 /* Frameworks */,
@@ -161,14 +158,14 @@
 			);
 			dependencies = (
 			);
-			name = "labo1-2";
+			name = "labo2-IOS2";
 			productName = "labo1-2";
-			productReference = B6A581502A7B21A600103E04 /* labo1-2.app */;
+			productReference = B6A581502A7B21A600103E04 /* labo2-IOS2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B6A581652A7B21A800103E04 /* labo1-2Tests */ = {
+		B6A581652A7B21A800103E04 /* labo2-IOS2Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6A5817D2A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo1-2Tests" */;
+			buildConfigurationList = B6A5817D2A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo2-IOS2Tests" */;
 			buildPhases = (
 				B6A581622A7B21A800103E04 /* Sources */,
 				B6A581632A7B21A800103E04 /* Frameworks */,
@@ -179,14 +176,14 @@
 			dependencies = (
 				B6A581682A7B21A800103E04 /* PBXTargetDependency */,
 			);
-			name = "labo1-2Tests";
+			name = "labo2-IOS2Tests";
 			productName = "labo1-2Tests";
-			productReference = B6A581662A7B21A800103E04 /* labo1-2Tests.xctest */;
+			productReference = B6A581662A7B21A800103E04 /* labo2-IOS2Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B6A5816F2A7B21A800103E04 /* labo1-2UITests */ = {
+		B6A5816F2A7B21A800103E04 /* labo2-IOS2UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6A581802A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo1-2UITests" */;
+			buildConfigurationList = B6A581802A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo2-IOS2UITests" */;
 			buildPhases = (
 				B6A5816C2A7B21A800103E04 /* Sources */,
 				B6A5816D2A7B21A800103E04 /* Frameworks */,
@@ -197,9 +194,9 @@
 			dependencies = (
 				B6A581722A7B21A800103E04 /* PBXTargetDependency */,
 			);
-			name = "labo1-2UITests";
+			name = "labo2-IOS2UITests";
 			productName = "labo1-2UITests";
-			productReference = B6A581702A7B21A800103E04 /* labo1-2UITests.xctest */;
+			productReference = B6A581702A7B21A800103E04 /* labo2-IOS2UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -225,7 +222,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B6A5814B2A7B21A600103E04 /* Build configuration list for PBXProject "labo1-2" */;
+			buildConfigurationList = B6A5814B2A7B21A600103E04 /* Build configuration list for PBXProject "labo2-IOS2" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -238,9 +235,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B6A5814F2A7B21A600103E04 /* labo1-2 */,
-				B6A581652A7B21A800103E04 /* labo1-2Tests */,
-				B6A5816F2A7B21A800103E04 /* labo1-2UITests */,
+				B6A5814F2A7B21A600103E04 /* labo2-IOS2 */,
+				B6A581652A7B21A800103E04 /* labo2-IOS2Tests */,
+				B6A5816F2A7B21A800103E04 /* labo2-IOS2UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -282,7 +279,6 @@
 				B6A5818C2A7B242400103E04 /* JeuPendu.swift in Sources */,
 				B6A581542A7B21A600103E04 /* AppDelegate.swift in Sources */,
 				B6A581562A7B21A600103E04 /* SceneDelegate.swift in Sources */,
-				B6A5818A2A7B23EA00103E04 /* ImagesSequenceData.swift in Sources */,
 				B6A581862A7B22C500103E04 /* MovieDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,12 +302,12 @@
 /* Begin PBXTargetDependency section */
 		B6A581682A7B21A800103E04 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B6A5814F2A7B21A600103E04 /* labo1-2 */;
+			target = B6A5814F2A7B21A600103E04 /* labo2-IOS2 */;
 			targetProxy = B6A581672A7B21A800103E04 /* PBXContainerItemProxy */;
 		};
 		B6A581722A7B21A800103E04 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B6A5814F2A7B21A600103E04 /* labo1-2 */;
+			target = B6A5814F2A7B21A600103E04 /* labo2-IOS2 */;
 			targetProxy = B6A581712A7B21A800103E04 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -519,7 +515,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/labo1-2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/labo1-2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/labo2-IOS2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/labo2-IOS2";
 			};
 			name = Debug;
 		};
@@ -538,7 +534,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/labo1-2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/labo1-2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/labo2-IOS2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/labo2-IOS2";
 			};
 			name = Release;
 		};
@@ -579,7 +575,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B6A5814B2A7B21A600103E04 /* Build configuration list for PBXProject "labo1-2" */ = {
+		B6A5814B2A7B21A600103E04 /* Build configuration list for PBXProject "labo2-IOS2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B6A581782A7B21A800103E04 /* Debug */,
@@ -588,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6A5817A2A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo1-2" */ = {
+		B6A5817A2A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo2-IOS2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B6A5817B2A7B21A800103E04 /* Debug */,
@@ -597,7 +593,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6A5817D2A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo1-2Tests" */ = {
+		B6A5817D2A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo2-IOS2Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B6A5817E2A7B21A800103E04 /* Debug */,
@@ -606,7 +602,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6A581802A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo1-2UITests" */ = {
+		B6A581802A7B21A800103E04 /* Build configuration list for PBXNativeTarget "labo2-IOS2UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B6A581812A7B21A800103E04 /* Debug */,

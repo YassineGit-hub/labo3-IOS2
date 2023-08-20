@@ -1,5 +1,5 @@
+
 import Foundation
-import UIKit
 
 struct EndOfGameInformation {
     let win: Bool
@@ -7,7 +7,7 @@ struct EndOfGameInformation {
     let cntErrors: Int
     var finalMessage: String {
         return """
-        Win: \(win) in \(cntErrors)/7.
+        Win: \(win) in \(cntErrors)/6.
         Title was : \(title)
         """
     }
@@ -16,20 +16,17 @@ struct EndOfGameInformation {
 class JeuPendu {
     static let shared = JeuPendu()
 
-    private init(){}
+    private init() {}
 
-    private let maxErreur: Int = 7
+    private let maxErreur: Int = 6
     private var nbErreurs: Int = 0
     private var titreADeviner: [Character] = []
     private var indexTrouves: [Bool] = []
     private var lettresUtilisateurs: [Character] = []
-    private var filmADeviner: Movie?
-
-    // Assuming that you have a file named ImagesSequenceData with a static variable imageNames
-    private let imageNamesSequence = ImagesSequenceData.imageNames
+    var filmADeviner: Movie?
 
     var devinette: String {
-        let arr = indexTrouves.indices.map {indexTrouves[$0] ? titreADeviner[$0] : "#"}
+        let arr = indexTrouves.indices.map { indexTrouves[$0] ? titreADeviner[$0] : "#"}
         return String(arr)
     }
 
@@ -41,8 +38,31 @@ class JeuPendu {
         return "\(nbErreurs) / \(maxErreur)"
     }
 
-    var image : UIImage {
-        return UIImage(named: imageNamesSequence[nbErreurs])!
+    var hints: String {
+        var result = ""
+        if let film = filmADeviner {
+            switch nbErreurs {
+            case 2:
+                if let releaseDate = film.Released {
+                    result += "Release Year: \(releaseDate)"
+                }
+            case 4:
+                if let genre = film.Genre {
+                    result += "Genre: \(genre) "
+                }
+                if let rated = film.Rated {
+                    result += "Rated: \(rated) "
+                }
+            case 5:
+                let directors = film.Director?.split(separator: ",").prefix(2) ?? []
+                let actors = film.Actors?.split(separator: ",").prefix(3) ?? []
+                result += "Directors: \(directors.joined(separator: ", ")) "
+                result += "Actors: \(actors.joined(separator: ", "))"
+            default:
+                break
+            }
+        }
+        return result
     }
 
     func jouer(avec film: Movie) {
@@ -55,7 +75,6 @@ class JeuPendu {
                 indexTrouves[idx] = true
             }
         }
-        print("DB : jouer()", devinette)
         nbErreurs = 0
     }
 
@@ -82,5 +101,10 @@ class JeuPendu {
             return EndOfGameInformation(win: true, title: String(titreADeviner), cntErrors: nbErreurs).finalMessage
         }
         return nil
+    }
+
+    // Additional function to access filmADeviner
+    func currentMovie() -> Movie? {
+        return filmADeviner
     }
 }
