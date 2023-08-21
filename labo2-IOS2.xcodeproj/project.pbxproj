@@ -16,6 +16,9 @@
 		B6A581862A7B22C500103E04 /* MovieDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A581852A7B22C500103E04 /* MovieDownloader.swift */; };
 		B6A581882A7B232E00103E04 /* listeFilms.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A581872A7B232E00103E04 /* listeFilms.swift */; };
 		B6A5818C2A7B242400103E04 /* JeuPendu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A5818B2A7B242400103E04 /* JeuPendu.swift */; };
+		B6DB9C6F2A92E920006959B4 /* wordDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C6E2A92E920006959B4 /* wordDownloader.swift */; };
+		B6DB9C712A92E959006959B4 /* jeuPenduDictionnary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */; };
+		B6DB9C732A92E9E6006959B4 /* dictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C722A92E9E6006959B4 /* dictController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		B6A581852A7B22C500103E04 /* MovieDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDownloader.swift; sourceTree = "<group>"; };
 		B6A581872A7B232E00103E04 /* listeFilms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listeFilms.swift; sourceTree = "<group>"; };
 		B6A5818B2A7B242400103E04 /* JeuPendu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeuPendu.swift; sourceTree = "<group>"; };
+		B6DB9C6E2A92E920006959B4 /* wordDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordDownloader.swift; sourceTree = "<group>"; };
+		B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jeuPenduDictionnary.swift; sourceTree = "<group>"; };
+		B6DB9C722A92E9E6006959B4 /* dictController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dictController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,8 @@
 				B6A581852A7B22C500103E04 /* MovieDownloader.swift */,
 				B6A581872A7B232E00103E04 /* listeFilms.swift */,
 				B6A5818B2A7B242400103E04 /* JeuPendu.swift */,
+				B6DB9C6E2A92E920006959B4 /* wordDownloader.swift */,
+				B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B6A581572A7B21A600103E04 /* ViewController.swift */,
+				B6DB9C722A92E9E6006959B4 /* dictController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -274,11 +283,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6DB9C712A92E959006959B4 /* jeuPenduDictionnary.swift in Sources */,
 				B6A581582A7B21A600103E04 /* ViewController.swift in Sources */,
 				B6A581882A7B232E00103E04 /* listeFilms.swift in Sources */,
 				B6A5818C2A7B242400103E04 /* JeuPendu.swift in Sources */,
+				B6DB9C732A92E9E6006959B4 /* dictController.swift in Sources */,
 				B6A581542A7B21A600103E04 /* AppDelegate.swift in Sources */,
 				B6A581562A7B21A600103E04 /* SceneDelegate.swift in Sources */,
+				B6DB9C6F2A92E920006959B4 /* wordDownloader.swift in Sources */,
 				B6A581862A7B22C500103E04 /* MovieDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
