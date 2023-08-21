@@ -21,7 +21,7 @@ class JeuPenduDictionnary {
 
     private func initializeGame(with word: String) {
         self.wordToGuess = word
-        self.currentWordState = Array(repeating: "_", count: word.count)
+        self.currentWordState = Array(repeating: "#", count: word.count)
         self.errorsCount = 0
     }
 

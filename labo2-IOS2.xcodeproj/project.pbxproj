@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B6A581542A7B21A600103E04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A581532A7B21A600103E04 /* AppDelegate.swift */; };
 		B6A581562A7B21A600103E04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A581552A7B21A600103E04 /* SceneDelegate.swift */; };
-		B6A581582A7B21A600103E04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A581572A7B21A600103E04 /* ViewController.swift */; };
 		B6A5815B2A7B21A600103E04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A581592A7B21A600103E04 /* Main.storyboard */; };
 		B6A5815D2A7B21A700103E04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A5815C2A7B21A700103E04 /* Assets.xcassets */; };
 		B6A581602A7B21A700103E04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A5815E2A7B21A700103E04 /* LaunchScreen.storyboard */; };
@@ -18,7 +17,8 @@
 		B6A5818C2A7B242400103E04 /* JeuPendu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A5818B2A7B242400103E04 /* JeuPendu.swift */; };
 		B6DB9C6F2A92E920006959B4 /* wordDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C6E2A92E920006959B4 /* wordDownloader.swift */; };
 		B6DB9C712A92E959006959B4 /* jeuPenduDictionnary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */; };
-		B6DB9C732A92E9E6006959B4 /* dictController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C722A92E9E6006959B4 /* dictController.swift */; };
+		B6DB9C772A92F540006959B4 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C762A92F540006959B4 /* MovieViewController.swift */; };
+		B6DB9C792A92F5A0006959B4 /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C782A92F5A0006959B4 /* WordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 		B6A581502A7B21A600103E04 /* labo2-IOS2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "labo2-IOS2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A581532A7B21A600103E04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6A581552A7B21A600103E04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B6A581572A7B21A600103E04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B6A5815A2A7B21A600103E04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B6A5815C2A7B21A700103E04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6A5815F2A7B21A700103E04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,7 +53,8 @@
 		B6A5818B2A7B242400103E04 /* JeuPendu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeuPendu.swift; sourceTree = "<group>"; };
 		B6DB9C6E2A92E920006959B4 /* wordDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordDownloader.swift; sourceTree = "<group>"; };
 		B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jeuPenduDictionnary.swift; sourceTree = "<group>"; };
-		B6DB9C722A92E9E6006959B4 /* dictController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dictController.swift; sourceTree = "<group>"; };
+		B6DB9C762A92F540006959B4 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		B6DB9C782A92F5A0006959B4 /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +137,8 @@
 		B6A5818E2A7B249F00103E04 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B6A581572A7B21A600103E04 /* ViewController.swift */,
-				B6DB9C722A92E9E6006959B4 /* dictController.swift */,
+				B6DB9C762A92F540006959B4 /* MovieViewController.swift */,
+				B6DB9C782A92F5A0006959B4 /* WordViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -284,10 +284,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6DB9C712A92E959006959B4 /* jeuPenduDictionnary.swift in Sources */,
-				B6A581582A7B21A600103E04 /* ViewController.swift in Sources */,
+				B6DB9C772A92F540006959B4 /* MovieViewController.swift in Sources */,
 				B6A581882A7B232E00103E04 /* listeFilms.swift in Sources */,
+				B6DB9C792A92F5A0006959B4 /* WordViewController.swift in Sources */,
 				B6A5818C2A7B242400103E04 /* JeuPendu.swift in Sources */,
-				B6DB9C732A92E9E6006959B4 /* dictController.swift in Sources */,
 				B6A581542A7B21A600103E04 /* AppDelegate.swift in Sources */,
 				B6A581562A7B21A600103E04 /* SceneDelegate.swift in Sources */,
 				B6DB9C6F2A92E920006959B4 /* wordDownloader.swift in Sources */,

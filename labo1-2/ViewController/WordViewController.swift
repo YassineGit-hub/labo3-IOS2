@@ -1,6 +1,15 @@
+//
+//  WordViewController.swift
+//  labo2-IOS2
+//
+//  Created by Yassine Belkaousse (Étudiant) on 2023-08-20.
+//
+
 import UIKit
 
-class viewController: UIViewController {
+class WordViewController: UIViewController {
+
+    
 
     @IBOutlet weak var wordInProgressLabel: UILabel!
     @IBOutlet weak var letterInputField: UITextField!
