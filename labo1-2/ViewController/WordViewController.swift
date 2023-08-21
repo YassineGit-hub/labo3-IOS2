@@ -1,16 +1,6 @@
-//
-//  WordViewController.swift
-//  labo2-IOS2
-//
-//  Created by Yassine Belkaousse (Étudiant) on 2023-08-20.
-//
-
 import UIKit
 
 class WordViewController: UIViewController {
-
-    
-
     @IBOutlet weak var wordInProgressLabel: UILabel!
     @IBOutlet weak var letterInputField: UITextField!
     @IBOutlet weak var guessedLettersLabel: UILabel!
@@ -43,6 +33,7 @@ class WordViewController: UIViewController {
         jeu.guessLetter(character)
 
         wordInProgressLabel.text = jeu.getCurrentState()
+        guessedLettersLabel.text = jeu.getGuessedLetters()  // Update the guessed letters label
         letterInputField.text = ""
         errorCountLabel.text = "Erreurs: \(jeu.getErrorsCount())"
 
@@ -57,3 +48,4 @@ class WordViewController: UIViewController {
         }
     }
 }
+

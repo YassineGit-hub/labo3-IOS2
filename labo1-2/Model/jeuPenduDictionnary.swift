@@ -5,6 +5,7 @@ class JeuPenduDictionnary {
     private var wordToGuess: String = ""
     private var currentWordState: [Character] = []
     private var errorsCount: Int = 0
+    private var guessedLetters: [Character] = []
 
     private let wordDownloader = WordDownloader()
 
@@ -15,6 +16,7 @@ class JeuPenduDictionnary {
                 return
             }
             self.initializeGame(with: word)
+            print("Mot à deviner: \(word)") 
             completion(true)
         }
     }
@@ -23,17 +25,21 @@ class JeuPenduDictionnary {
         self.wordToGuess = word
         self.currentWordState = Array(repeating: "#", count: word.count)
         self.errorsCount = 0
+        self.guessedLetters = []
     }
 
     func guessLetter(_ letter: Character) {
-        if wordToGuess.contains(letter) {
-            for (index, wordLetter) in wordToGuess.enumerated() {
-                if wordLetter == letter {
-                    currentWordState[index] = letter
+        if !guessedLetters.contains(letter) {
+            guessedLetters.append(letter)
+            if wordToGuess.contains(letter) {
+                for (index, wordLetter) in wordToGuess.enumerated() {
+                    if wordLetter == letter {
+                        currentWordState[index] = letter
+                    }
                 }
+            } else {
+                errorsCount += 1
             }
-        } else {
-            errorsCount += 1
         }
     }
 
@@ -44,8 +50,12 @@ class JeuPenduDictionnary {
     func getErrorsCount() -> Int {
         return errorsCount
     }
-    
+
+    func getGuessedLetters() -> String {
+        return String(guessedLetters)
+    }
+
     func hasGameEnded() -> Bool {
-        return errorsCount >= 6 || !currentWordState.contains("_")
+        return errorsCount >= 6 || !currentWordState.contains("#")
     }
 }
