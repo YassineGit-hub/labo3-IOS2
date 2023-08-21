@@ -69,33 +69,43 @@ class MovieViewController: UIViewController {
         pointsLabel.text = errorCountString
 
         guard let errorCount = Int(errorCountString), let movie = currentMovie else {
-            print("Guard statement in updateMovieHintsBasedOnErrorCount failed")
+            // Handle errors or unexpected conditions here
             return
         }
-    
-        print("Error count: \(errorCount)")
-    
+
         switch errorCount {
         case 2:
-            print("Released: \(movie.Released ?? "No data")")
-            releaseYearLabel.text = movie.Released
+            releaseYearLabel.text = movie.Released ?? "Non disponible"
         
         case 4:
-            print("Rated: \(movie.Rated ?? "No data")")
-            print("Genre: \(movie.Genre ?? "No data")")
-            ratingLabel.text = movie.Rated
-            genreLabel.text = movie.Genre
+            ratingLabel.text = movie.Rated ?? "Non disponible"
+            genreLabel.text = movie.Genre ?? "Non disponible"
         
         case 5:
-            print("Director: \(movie.Director ?? "No data")")
-            print("Actors: \(movie.Actors ?? "No data")")
-            directorsLabel.text = movie.Director?.components(separatedBy: ",").prefix(2).joined(separator: ", ")
-            actorsLabel.text = movie.Actors?.components(separatedBy: ",").prefix(3).joined(separator: ", ").trimmingCharacters(in: .whitespaces)
+            // Displaying only the first 2 directors and 3 actors
+            if let directors = movie.Director?.components(separatedBy: ",").prefix(2).joined(separator: ", ").trimmingCharacters(in: .whitespaces) {
+                directorsLabel.text = directors
+            } else {
+                directorsLabel.text = "Non disponible"
+            }
+
+            if let actors = movie.Actors?.components(separatedBy: ",").prefix(3).joined(separator: ", ").trimmingCharacters(in: .whitespaces) {
+                actorsLabel.text = actors
+            } else {
+                actorsLabel.text = "Non disponible"
+            }
         
         default:
-            break
+            // Clear previous hints
+            releaseYearLabel.text = ""
+            ratingLabel.text = ""
+            genreLabel.text = ""
+            directorsLabel.text = ""
+            actorsLabel.text = ""
         }
     }
-}
+
+    }
+
 
 
