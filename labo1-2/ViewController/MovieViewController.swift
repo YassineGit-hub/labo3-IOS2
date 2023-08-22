@@ -1,34 +1,28 @@
-//
-//  MovieViewController.swift
-//  labo2-IOS2
-//
-//  Created by Yassine Belkaousse (Étudiant) on 2023-08-20.
-//
-
 import UIKit
 
 class MovieViewController: UIViewController {
 
-    
+    // Outlets
     @IBOutlet weak var devinetteLabel: UILabel!
     @IBOutlet weak var userInputField: UITextField!
     @IBOutlet weak var userUsedLetters: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
-
     @IBOutlet weak var releaseYearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var directorsLabel: UILabel!
     @IBOutlet weak var actorsLabel: UILabel!
 
+    // Variables
     let movieDownloader = MovieDownloader()
     var currentMovie: Movie?
+    var userName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         movieDownloader.getRandomMovie { movie in
-            print("Downloaded movie: \(movie)");
+            print("Downloaded movie: \(movie)")
             guard let movie = movie else { return }
             self.currentMovie = movie
             JeuPendu.shared.jouer(avec: movie)
@@ -69,20 +63,16 @@ class MovieViewController: UIViewController {
         pointsLabel.text = errorCountString
 
         guard let errorCount = Int(errorCountString), let movie = currentMovie else {
-            // Handle errors or unexpected conditions here
             return
         }
 
         switch errorCount {
         case 2:
             releaseYearLabel.text = movie.Released ?? "Non disponible"
-        
         case 4:
             ratingLabel.text = movie.Rated ?? "Non disponible"
             genreLabel.text = movie.Genre ?? "Non disponible"
-        
         case 5:
-            // Displaying only the first 2 directors and 3 actors
             if let directors = movie.Director?.components(separatedBy: ",").prefix(2).joined(separator: ", ").trimmingCharacters(in: .whitespaces) {
                 directorsLabel.text = directors
             } else {
@@ -94,9 +84,7 @@ class MovieViewController: UIViewController {
             } else {
                 actorsLabel.text = "Non disponible"
             }
-        
         default:
-            // Clear previous hints
             releaseYearLabel.text = ""
             ratingLabel.text = ""
             genreLabel.text = ""
@@ -105,7 +93,10 @@ class MovieViewController: UIViewController {
         }
     }
 
+    func saveScore(score: Int) {
+        let gameType = "Movie Title"
+        let newScore = Score(name: userName ?? "defaultUser", value: score, gameType: gameType)
+        Score.saveScore(newScore)
     }
 
-
-
+}

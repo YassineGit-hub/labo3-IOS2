@@ -1,12 +1,14 @@
 import UIKit
 
 class WordViewController: UIViewController {
+    
     @IBOutlet weak var wordInProgressLabel: UILabel!
     @IBOutlet weak var letterInputField: UITextField!
     @IBOutlet weak var guessedLettersLabel: UILabel!
     @IBOutlet weak var errorCountLabel: UILabel!
 
     private let jeu = JeuPenduDictionnary()
+    var userName: String? // Ajout de la propriété pour accepter le nom d'utilisateur
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,11 @@ class WordViewController: UIViewController {
 
         if jeu.hasGameEnded() {
             let message = jeu.getErrorsCount() >= 6 ? "Désolé, vous avez perdu!" : "Félicitations, vous avez gagné!"
+            
+            // Sauvegarder le score
+            let score = jeu.getErrorsCount() // Adaptez cette ligne selon la logique de votre jeu.
+            saveScore(score: score)
+            
             let alert = UIAlertController(title: "Fin de jeu", message: message, preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default) { _ in
                 // Restart the game or navigate to another screen
@@ -47,5 +54,11 @@ class WordViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-}
+    
+    func saveScore(score: Int) {
+        let gameType = "Dictionnary Word"
+        let newScore = Score(name: userName ?? "defaultUser", value: score, gameType: gameType)
+        Score.saveScore(newScore)
+    }
 
+}
