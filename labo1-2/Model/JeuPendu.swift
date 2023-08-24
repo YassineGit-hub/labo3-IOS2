@@ -5,10 +5,11 @@ struct EndOfGameInformation {
     let title: String
     let cntErrors: Int
     var finalMessage: String {
-        return """
-        Win: \(win) in \(cntErrors)/6.
-        Title was : \(title)
-        """
+        if win {
+            return "gagné!"
+        } else {
+            return "perdu!\nLe titre est : \(title)"
+        }
     }
 }
 
