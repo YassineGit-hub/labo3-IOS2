@@ -40,18 +40,15 @@ class WordViewController: UIViewController {
         errorCountLabel.text = "Erreurs: \(jeu.getErrorsCount())"
 
         if jeu.hasGameEnded() {
+            let wordToGuess = jeu.getWordToGuess() // Ajoutez cette méthode dans JeuPenduDictionnary si elle n'existe pas
             let message = jeu.getErrorsCount() >= 6 ? "Désolé, vous avez perdu!" : "Félicitations, vous avez gagné!"
             
-            // Sauvegarder le score
-            let score = jeu.getErrorsCount() // Adaptez cette ligne selon la logique de votre jeu.
-            saveScore(score: score)
-            
-            let alert = UIAlertController(title: "Fin de jeu", message: message, preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default) { _ in
-                // Restart the game or navigate to another screen
+            // Navigate to ResultViewController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let resultVC = storyboard.instantiateViewController(withIdentifier: "ResultViewControllerID") as? ResultViewController {
+                resultVC.finalMessage = message + "\nMot était: \(wordToGuess)"
+                navigationController?.pushViewController(resultVC, animated: true)
             }
-            alert.addAction(OKAction)
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -60,5 +57,4 @@ class WordViewController: UIViewController {
         let newScore = Score(name: userName ?? "defaultUser", value: score, gameType: gameType)
         Score.saveScore(newScore)
     }
-
 }

@@ -7,6 +7,7 @@ class MovieViewController: UIViewController {
     @IBOutlet weak var userInputField: UITextField!
     @IBOutlet weak var userUsedLetters: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
+    
     @IBOutlet weak var releaseYearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -45,16 +46,27 @@ class MovieViewController: UIViewController {
                 userUsedLetters.text = JeuPendu.shared.lettresUtilisees
 
                 updateMovieHintsBasedOnErrorCount()
-
                 if let fin = JeuPendu.shared.verifierFinDePartie() {
-                    let alert = UIAlertController(title: "Fin", message: "\(fin)", preferredStyle: .alert)
-                    let OKAction = UIAlertAction(title: "OK", style: .default) { _ in
-                        print("End of game")
+                    let finalMessage: String
+                    if fin.contains("win: true") {
+                        finalMessage = "gagné !"
+                    } else if fin.contains("win: false") {
+                        finalMessage = "perdu ! \(currentMovie?.Title ?? "Film inconnu")"
+                    } else {
+                        finalMessage = fin
                     }
-                    alert.addAction(OKAction)
-                    self.present(alert, animated: true, completion: nil)
+                    
+                    navigateToResultViewController(withResult: finalMessage)
                 }
             }
+        }
+    }
+
+    func navigateToResultViewController(withResult result: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let resultVC = storyboard.instantiateViewController(withIdentifier: "ResultViewControllerID") as? ResultViewController {
+            resultVC.finalMessage = result
+            navigationController?.pushViewController(resultVC, animated: true)
         }
     }
 
@@ -73,17 +85,8 @@ class MovieViewController: UIViewController {
             ratingLabel.text = movie.Rated ?? "Non disponible"
             genreLabel.text = movie.Genre ?? "Non disponible"
         case 5:
-            if let directors = movie.Director?.components(separatedBy: ",").prefix(2).joined(separator: ", ").trimmingCharacters(in: .whitespaces) {
-                directorsLabel.text = directors
-            } else {
-                directorsLabel.text = "Non disponible"
-            }
-
-            if let actors = movie.Actors?.components(separatedBy: ",").prefix(3).joined(separator: ", ").trimmingCharacters(in: .whitespaces) {
-                actorsLabel.text = actors
-            } else {
-                actorsLabel.text = "Non disponible"
-            }
+            directorsLabel.text = movie.Director?.components(separatedBy: ",").prefix(2).joined(separator: ", ").trimmingCharacters(in: .whitespaces) ?? "Non disponible"
+            actorsLabel.text = movie.Actors?.components(separatedBy: ",").prefix(3).joined(separator: ", ").trimmingCharacters(in: .whitespaces) ?? "Non disponible"
         default:
             releaseYearLabel.text = ""
             ratingLabel.text = ""
@@ -98,5 +101,4 @@ class MovieViewController: UIViewController {
         let newScore = Score(name: userName ?? "defaultUser", value: score, gameType: gameType)
         Score.saveScore(newScore)
     }
-
 }

@@ -27,6 +27,9 @@ class JeuPenduDictionnary {
         self.errorsCount = 0
         self.guessedLetters = []
     }
+    func getWordToGuess() -> String {
+            return wordToGuess ?? "Mot non disponible"
+        }
 
     func guessLetter(_ letter: Character) {
         if !guessedLetters.contains(letter) {
