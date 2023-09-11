@@ -1,20 +1,20 @@
 import UIKit
+import CoreData
 
 class MovieViewController: UIViewController {
 
-    // Outlets
     @IBOutlet weak var devinetteLabel: UILabel!
     @IBOutlet weak var userInputField: UITextField!
     @IBOutlet weak var userUsedLetters: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
-    
     @IBOutlet weak var releaseYearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var directorsLabel: UILabel!
     @IBOutlet weak var actorsLabel: UILabel!
+    
+    var context: NSManagedObjectContext?
 
-    // Variables
     let movieDownloader = MovieDownloader()
     var currentMovie: Movie?
     var userName: String?
@@ -23,11 +23,9 @@ class MovieViewController: UIViewController {
         super.viewDidLoad()
 
         movieDownloader.getRandomMovie { movie in
-            print("Downloaded movie: \(movie)")
             guard let movie = movie else { return }
             self.currentMovie = movie
             JeuPendu.shared.jouer(avec: movie)
-
             DispatchQueue.main.async {
                 self.devinetteLabel.text = JeuPendu.shared.devinette
                 self.pointsLabel.text = JeuPendu.shared.erreurs
@@ -40,24 +38,15 @@ class MovieViewController: UIViewController {
             if character.isLetter {
                 let lettre = String(character)
                 JeuPendu.shared.verifier(lettre: lettre)
-
                 devinetteLabel.text = JeuPendu.shared.devinette
                 userInputField.text = ""
                 userUsedLetters.text = JeuPendu.shared.lettresUtilisees
-
                 updateMovieHintsBasedOnErrorCount()
                 if let fin = JeuPendu.shared.verifierFinDePartie() {
-                    let finalMessage: String
-                    if fin.contains("win: true") {
-                        finalMessage = "gagné !"
-                    } else if fin.contains("win: false") {
-                        finalMessage = "perdu ! \(currentMovie?.Title ?? "Film inconnu")"
-                    } else {
-                        finalMessage = fin
-                    }
-                    
-                    navigateToResultViewController(withResult: finalMessage)
+                    navigateToResultViewController(withResult: fin)
+                    saveScore(score: JeuPendu.shared.currentScore())
                 }
+
             }
         }
     }
@@ -80,13 +69,13 @@ class MovieViewController: UIViewController {
 
         switch errorCount {
         case 2:
-            releaseYearLabel.text = movie.Released ?? "Non disponible"
+            releaseYearLabel.text = movie.Released
         case 4:
-            ratingLabel.text = movie.Rated ?? "Non disponible"
-            genreLabel.text = movie.Genre ?? "Non disponible"
+            ratingLabel.text = movie.Rated
+            genreLabel.text = movie.Genre
         case 5:
-            directorsLabel.text = movie.Director?.components(separatedBy: ",").prefix(2).joined(separator: ", ").trimmingCharacters(in: .whitespaces) ?? "Non disponible"
-            actorsLabel.text = movie.Actors?.components(separatedBy: ",").prefix(3).joined(separator: ", ").trimmingCharacters(in: .whitespaces) ?? "Non disponible"
+            directorsLabel.text = movie.Director?.components(separatedBy: ",").prefix(2).joined(separator: ", ")
+            actorsLabel.text = movie.Actors?.components(separatedBy: ",").prefix(3).joined(separator: ", ")
         default:
             releaseYearLabel.text = ""
             ratingLabel.text = ""
@@ -97,8 +86,8 @@ class MovieViewController: UIViewController {
     }
 
     func saveScore(score: Int) {
-        let gameType = "Movie Title"
-        let newScore = Score(name: userName ?? "defaultUser", value: score, gameType: gameType)
-        Score.saveScore(newScore)
+            let gameType = "Movie Title"
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            Score.saveIfHighest(name: userName ?? "defaultUser", value: Int16(score), gameType: gameType, context: context)
+        }
     }
-}

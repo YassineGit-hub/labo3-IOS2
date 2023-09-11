@@ -15,29 +15,29 @@ struct EndOfGameInformation {
 
 class JeuPendu {
     static let shared = JeuPendu()
-
+    
     private init() {}
-
+    
     private let maxErreur: Int = 6
     private var nbErreurs: Int = 0
     private var titreADeviner: [Character] = []
     private var indexTrouves: [Bool] = []
     private var lettresUtilisateurs: [Character] = []
     var filmADeviner: Movie?
-
+    
     var devinette: String {
         let arr = indexTrouves.indices.map { indexTrouves[$0] ? titreADeviner[$0] : "#"}
         return String(arr)
     }
-
+    
     var lettresUtilisees: String {
         return lettresUtilisateurs.map { String($0) }.joined(separator:", ")
     }
-
+    
     var erreurs: String {
         return "\(nbErreurs) / \(maxErreur)"
     }
-
+    
     var hints: String {
         var result = ""
         if let film = filmADeviner {
@@ -64,12 +64,13 @@ class JeuPendu {
         }
         return result
     }
-
+    
     func jouer(avec film: Movie) {
         filmADeviner = film
+        print("Titre du film actuel: \(film.Title)")
         titreADeviner = Array(film.Title)
         indexTrouves = Array(repeating: false, count: titreADeviner.count)
-
+        
         titreADeviner.enumerated().forEach { (idx, lettre) in
             if !("abcdefghijklmnopqrstuvwxyz".contains(lettre.lowercased())) {
                 indexTrouves[idx] = true
@@ -77,28 +78,28 @@ class JeuPendu {
         }
         nbErreurs = 0
     }
-
+    
     func verifier(lettre: String) {
         if let character = lettre.first, character.isLetter {
             let characterLowercased = character.lowercased()
             if let firstLowercasedChar = characterLowercased.first {
                 lettresUtilisateurs.append(firstLowercasedChar)
                 var trouvee = false
-
+                
                 titreADeviner.enumerated().forEach { (idx, lettreMystere) in
                     if lettreMystere.lowercased() == characterLowercased {
                         indexTrouves[idx] = true
                         trouvee = true
                     }
                 }
-
+                
                 if !trouvee {
                     nbErreurs += 1
                 }
             }
         }
     }
-
+    
     func verifierFinDePartie() -> String? {
         if nbErreurs == maxErreur {
             return EndOfGameInformation(win: false, title: String(titreADeviner), cntErrors: nbErreurs).finalMessage
@@ -107,10 +108,14 @@ class JeuPendu {
         }
         return nil
     }
-
+    
     // Additional function to access filmADeviner
     func currentMovie() -> Movie? {
         return filmADeviner
     }
+    
+    
+    func currentScore() -> Int {
+        return maxErreur - nbErreurs
+    }
 }
-

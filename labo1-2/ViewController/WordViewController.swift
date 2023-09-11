@@ -1,6 +1,8 @@
 import UIKit
+import CoreData
 
 class WordViewController: UIViewController {
+    var context: NSManagedObjectContext?
     
     @IBOutlet weak var wordInProgressLabel: UILabel!
     @IBOutlet weak var letterInputField: UITextField!
@@ -8,7 +10,7 @@ class WordViewController: UIViewController {
     @IBOutlet weak var errorCountLabel: UILabel!
 
     private let jeu = JeuPenduDictionnary()
-    var userName: String? // Ajout de la propriété pour accepter le nom d'utilisateur
+    var userName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +37,13 @@ class WordViewController: UIViewController {
         jeu.guessLetter(character)
 
         wordInProgressLabel.text = jeu.getCurrentState()
-        guessedLettersLabel.text = jeu.getGuessedLetters()  // Update the guessed letters label
+        guessedLettersLabel.text = jeu.getGuessedLetters()
         letterInputField.text = ""
         errorCountLabel.text = "Erreurs: \(jeu.getErrorsCount())"
 
         if jeu.hasGameEnded() {
-            let wordToGuess = jeu.getWordToGuess() // Ajoutez cette méthode dans JeuPenduDictionnary si elle n'existe pas
+            saveScore(score: jeu.getFinalScore())
+            let wordToGuess = jeu.getWordToGuess()
             let message = jeu.getErrorsCount() >= 6 ? "Désolé, vous avez perdu!" : "Félicitations, vous avez gagné!"
             
             // Navigate to ResultViewController
@@ -54,7 +57,8 @@ class WordViewController: UIViewController {
     
     func saveScore(score: Int) {
         let gameType = "Dictionnary Word"
-        let newScore = Score(name: userName ?? "defaultUser", value: score, gameType: gameType)
-        Score.saveScore(newScore)
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        Score.saveIfHighest(name: userName ?? "defaultUser", value: Int16(score), gameType: gameType, context: context)
     }
 }
+

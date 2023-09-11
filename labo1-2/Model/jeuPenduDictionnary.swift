@@ -8,6 +8,7 @@ class JeuPenduDictionnary {
     private var guessedLetters: [Character] = []
 
     private let wordDownloader = WordDownloader()
+    private let maxScore = 100
 
     func startNewGame(completion: @escaping (Bool) -> Void) {
         wordDownloader.fetchRandomWord { [weak self] word in
@@ -16,7 +17,7 @@ class JeuPenduDictionnary {
                 return
             }
             self.initializeGame(with: word)
-            print("Mot à deviner: \(word)") 
+            print("Mot à deviner: \(word)")
             completion(true)
         }
     }
@@ -27,9 +28,10 @@ class JeuPenduDictionnary {
         self.errorsCount = 0
         self.guessedLetters = []
     }
+
     func getWordToGuess() -> String {
-            return wordToGuess ?? "Mot non disponible"
-        }
+        return wordToGuess
+    }
 
     func guessLetter(_ letter: Character) {
         if !guessedLetters.contains(letter) {
@@ -60,5 +62,10 @@ class JeuPenduDictionnary {
 
     func hasGameEnded() -> Bool {
         return errorsCount >= 6 || !currentWordState.contains("#")
+    }
+
+    func getFinalScore() -> Int {
+        let deductionPerError = maxScore / 6 // 6 est le nombre d'erreurs maximum
+        return maxScore - (errorsCount * deductionPerError)
     }
 }
