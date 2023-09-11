@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B60A0CA22AAEC4060078D45D /* Prefrences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A0CA12AAEC4060078D45D /* Prefrences.swift */; };
+		B60A0CA42AAEC4800078D45D /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A0CA32AAEC4800078D45D /* PreferencesViewController.swift */; };
 		B60AD5DC2A96E12500234A13 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AD5DB2A96E12500234A13 /* ResultViewController.swift */; };
 		B67D2DB82A941E2B009E3952 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D2DB72A941E2B009E3952 /* Score.swift */; };
 		B67D2DBC2A9424F1009E3952 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D2DBB2A9424F1009E3952 /* HomeViewController.swift */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		B60A0CA02AAE82F70078D45D /* AppDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppDataModel.xcdatamodel; sourceTree = "<group>"; };
+		B60A0CA12AAEC4060078D45D /* Prefrences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefrences.swift; sourceTree = "<group>"; };
+		B60A0CA32AAEC4800078D45D /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		B60AD5DB2A96E12500234A13 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		B67D2DB72A941E2B009E3952 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		B67D2DBB2A9424F1009E3952 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 				B6DB9C6E2A92E920006959B4 /* wordDownloader.swift */,
 				B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */,
 				B67D2DB72A941E2B009E3952 /* Score.swift */,
+				B60A0CA12AAEC4060078D45D /* Prefrences.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 				B67D2DBB2A9424F1009E3952 /* HomeViewController.swift */,
 				B67D2DBD2A943018009E3952 /* ScorViewController.swift */,
 				B60AD5DB2A96E12500234A13 /* ResultViewController.swift */,
+				B60A0CA32AAEC4800078D45D /* PreferencesViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -301,6 +307,8 @@
 				B60AD5DC2A96E12500234A13 /* ResultViewController.swift in Sources */,
 				B67D2DBE2A943018009E3952 /* ScorViewController.swift in Sources */,
 				B6DB9C772A92F540006959B4 /* MovieViewController.swift in Sources */,
+				B60A0CA22AAEC4060078D45D /* Prefrences.swift in Sources */,
+				B60A0CA42AAEC4800078D45D /* PreferencesViewController.swift in Sources */,
 				B6A581882A7B232E00103E04 /* listeFilms.swift in Sources */,
 				B6DB9C792A92F5A0006959B4 /* WordViewController.swift in Sources */,
 				B67D2DB82A941E2B009E3952 /* Score.swift in Sources */,
