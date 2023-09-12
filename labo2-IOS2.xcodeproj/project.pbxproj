@@ -25,6 +25,7 @@
 		B6DB9C712A92E959006959B4 /* jeuPenduDictionnary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */; };
 		B6DB9C772A92F540006959B4 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C762A92F540006959B4 /* MovieViewController.swift */; };
 		B6DB9C792A92F5A0006959B4 /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DB9C782A92F5A0006959B4 /* WordViewController.swift */; };
+		B6DE6CE32AAFCF5200352146 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE6CE22AAFCF5200352146 /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jeuPenduDictionnary.swift; sourceTree = "<group>"; };
 		B6DB9C762A92F540006959B4 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		B6DB9C782A92F5A0006959B4 /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
+		B6DE6CE22AAFCF5200352146 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				B6DB9C702A92E959006959B4 /* jeuPenduDictionnary.swift */,
 				B67D2DB72A941E2B009E3952 /* Score.swift */,
 				B60A0CA12AAEC4060078D45D /* Prefrences.swift */,
+				B6DE6CE22AAFCF5200352146 /* Utility.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,7 +145,6 @@
 		B6A5818D2A7B243A00103E04 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
-				B60A0C9F2AAE82F70078D45D /* AppDataModel.xcdatamodeld */,
 				B6A5815C2A7B21A700103E04 /* Assets.xcassets */,
 				B6A581552A7B21A600103E04 /* SceneDelegate.swift */,
 				B6A581532A7B21A600103E04 /* AppDelegate.swift */,
@@ -168,6 +170,7 @@
 			children = (
 				B6A5815E2A7B21A700103E04 /* LaunchScreen.storyboard */,
 				B6A581592A7B21A600103E04 /* Main.storyboard */,
+				B60A0C9F2AAE82F70078D45D /* AppDataModel.xcdatamodeld */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				B6A5818C2A7B242400103E04 /* JeuPendu.swift in Sources */,
 				B6A581542A7B21A600103E04 /* AppDelegate.swift in Sources */,
 				B67D2DBC2A9424F1009E3952 /* HomeViewController.swift in Sources */,
+				B6DE6CE32AAFCF5200352146 /* Utility.swift in Sources */,
 				B6A581562A7B21A600103E04 /* SceneDelegate.swift in Sources */,
 				B6DB9C6F2A92E920006959B4 /* wordDownloader.swift in Sources */,
 				B6A581862A7B22C500103E04 /* MovieDownloader.swift in Sources */,

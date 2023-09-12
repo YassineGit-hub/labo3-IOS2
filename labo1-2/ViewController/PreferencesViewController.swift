@@ -2,21 +2,48 @@ import UIKit
 
 class PreferencesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var languagePicker: UIPickerView!
-    @IBOutlet weak var themePicker: UIPickerView!
-
     let languages = ["Français", "Anglais", "Espagnol"]
     let themes = ["Clair", "Sombre", "Bleu"]
+
+    let languagePicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+
+    let themePicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Ajoutez les pickers à la vue
+        view.addSubview(languagePicker)
+        view.addSubview(themePicker)
+
+        // Définissez les contraintes
+        NSLayoutConstraint.activate([
+            languagePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            languagePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            languagePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            languagePicker.heightAnchor.constraint(equalToConstant: 100),
+
+            themePicker.topAnchor.constraint(equalTo: languagePicker.bottomAnchor, constant: 20),
+            themePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            themePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            themePicker.heightAnchor.constraint(equalToConstant: 100)
+        ])
+
+        // Configurez les pickers
         languagePicker.delegate = self
         languagePicker.dataSource = self
-
         themePicker.delegate = self
         themePicker.dataSource = self
 
+        // Chargez les préférences
         loadPreferences()
     }
 
@@ -58,3 +85,4 @@ class PreferencesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
 }
+

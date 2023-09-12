@@ -13,7 +13,7 @@ class UserPreferences {
     var selectedTheme: String? {
         get { return userDefaults.string(forKey: "userTheme") }
         set {
-            userDefaults.set(newValue, forKey: "userTheme")
+        userDefaults.set(newValue, forKey: "userTheme")
             NotificationCenter.default.post(name: .themeDidChange, object: nil)
         }
     }

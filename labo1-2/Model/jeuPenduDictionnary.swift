@@ -68,4 +68,8 @@ class JeuPenduDictionnary {
         let deductionPerError = maxScore / 6 // 6 est le nombre d'erreurs maximum
         return maxScore - (errorsCount * deductionPerError)
     }
+    func recommencerJeu(completion: @escaping (Bool) -> Void) {
+        startNewGame(completion: completion)
+    }
+
 }

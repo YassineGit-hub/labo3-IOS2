@@ -2,7 +2,6 @@ import UIKit
 import CoreData
 
 class WordViewController: UIViewController {
-    var context: NSManagedObjectContext?
     
     @IBOutlet weak var wordInProgressLabel: UILabel!
     @IBOutlet weak var letterInputField: UITextField!
@@ -11,6 +10,7 @@ class WordViewController: UIViewController {
 
     private let jeu = JeuPenduDictionnary()
     var userName: String?
+    var context: NSManagedObjectContext?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +55,29 @@ class WordViewController: UIViewController {
         }
     }
     
-    func saveScore(score: Int) {
-        let gameType = "Dictionnary Word"
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        Score.saveIfHighest(name: userName ?? "defaultUser", value: Int16(score), gameType: gameType, context: context)
+    @IBAction func restartGame(_ sender: Any) {
+        jeu.recommencerJeu { success in
+            if success {
+                DispatchQueue.main.async {
+                    self.wordInProgressLabel.text = self.jeu.getCurrentState()
+                    self.errorCountLabel.text = "Erreurs: \(self.jeu.getErrorsCount())"
+                }
+            } else {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Erreur", message: "Impossible de charger un nouveau mot.", preferredStyle: .alert)
+                    let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(OKAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
+
+    
+    func saveScore(score: Int) {
+        guard let name = userName, let context = context else { return }
+        Score.saveIfHighest(name: name, value: Int16(score), gameType: "Dictionnary Word", context: context)
+    }
+
 }
 

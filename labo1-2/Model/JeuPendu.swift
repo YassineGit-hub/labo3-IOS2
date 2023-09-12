@@ -118,4 +118,13 @@ class JeuPendu {
     func currentScore() -> Int {
         return maxErreur - nbErreurs
     }
+    
+    func recommencerJeu() {
+        nbErreurs = 0
+        titreADeviner = []
+        indexTrouves = []
+        lettresUtilisateurs = []
+        filmADeviner = nil
+    }
+
 }

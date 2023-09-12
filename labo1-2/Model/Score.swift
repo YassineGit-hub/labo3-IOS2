@@ -19,17 +19,17 @@ extension Score {
             
             if let highestScore = highestScores.first {
                 if value > highestScore.value {
-                    saveScore(name: name, value: value, gameType: gameType, context: context)
+                    save(name: name, value: value, gameType: gameType, context: context)
                 }
             } else {
-                saveScore(name: name, value: value, gameType: gameType, context: context)
+                save(name: name, value: value, gameType: gameType, context: context)
             }
         } catch {
             print("Failed to fetch highest score: \(error)")
         }
     }
     
-    private static func saveScore(name: String, value: Int16, gameType: String, context: NSManagedObjectContext) {
+    private static func save(name: String, value: Int16, gameType: String, context: NSManagedObjectContext) {
         let score = Score(context: context)
         score.name = name
         score.value = value
@@ -43,6 +43,9 @@ extension Score {
     }
     
     static func fetchTopScores(for gameType: String, limit: Int = 5, context: NSManagedObjectContext) -> [Score] {
+     
+
+        
         let fetchRequest = NSFetchRequest<Score>(entityName: "Score")
         fetchRequest.predicate = NSPredicate(format: "gameType == %@", gameType)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "value", ascending: false)]

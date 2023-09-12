@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-class ScoreViewController: UIViewController, UITableViewDataSource {
+class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -13,33 +13,20 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
         
         // Setup table view
         tableView.dataSource = self
+        tableView.delegate = self
+
         fetchScores()
     }
     
     private func fetchScores() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<Score>(entityName: "Score")
 
-        // For Movie Title
-        fetchRequest.predicate = NSPredicate(format: "gameType = %@", "Movie Title")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "value", ascending: false)]
-        fetchRequest.fetchLimit = 5
-        do {
-            movieScores = try context.fetch(fetchRequest)
-        } catch {
-            print("Failed to fetch movie scores: \(error)")
-        }
+        movieScores = Score.fetchTopScores(for: "Movie Title", limit: 5, context: context)
+        wordScores = Score.fetchTopScores(for: "Dictionnary Word", limit: 5, context: context)
 
-        // For Dictionary Word
-        fetchRequest.predicate = NSPredicate(format: "gameType = %@", "Dictionnary Word")
-        do {
-            wordScores = try context.fetch(fetchRequest)
-        } catch {
-            print("Failed to fetch word scores: \(error)")
-        }
-        
         tableView.reloadData()
     }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2 // One for Movie and one for Word

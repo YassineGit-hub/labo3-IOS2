@@ -2,7 +2,7 @@ import UIKit
 import CoreData
 
 class MovieViewController: UIViewController {
-
+    
     @IBOutlet weak var devinetteLabel: UILabel!
     @IBOutlet weak var userInputField: UITextField!
     @IBOutlet weak var userUsedLetters: UILabel!
@@ -14,10 +14,10 @@ class MovieViewController: UIViewController {
     @IBOutlet weak var actorsLabel: UILabel!
     
     var context: NSManagedObjectContext?
-
+    var userName: String?
+    
     let movieDownloader = MovieDownloader()
     var currentMovie: Movie?
-    var userName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +46,23 @@ class MovieViewController: UIViewController {
                     navigateToResultViewController(withResult: fin)
                     saveScore(score: JeuPendu.shared.currentScore())
                 }
-
             }
         }
     }
+    @IBAction func restartGame(_ sender: Any) {
+        JeuPendu.shared.recommencerJeu()
+        movieDownloader.getRandomMovie { movie in
+            guard let movie = movie else { return }
+            self.currentMovie = movie
+            JeuPendu.shared.jouer(avec: movie)
+            DispatchQueue.main.async {
+                self.devinetteLabel.text = JeuPendu.shared.devinette
+                self.pointsLabel.text = JeuPendu.shared.erreurs
+            }
+        }
+    }
+
+    
 
     func navigateToResultViewController(withResult result: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -86,8 +99,10 @@ class MovieViewController: UIViewController {
     }
 
     func saveScore(score: Int) {
-            let gameType = "Movie Title"
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            Score.saveIfHighest(name: userName ?? "defaultUser", value: Int16(score), gameType: gameType, context: context)
-        }
+        guard let name = userName, let context = context else { return }
+        Score.saveIfHighest(name: name, value: Int16(score), gameType: "Movie Title", context: context)
     }
+    
+
+}
+
