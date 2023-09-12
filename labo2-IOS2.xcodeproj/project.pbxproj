@@ -118,6 +118,7 @@
 		B6A581522A7B21A600103E04 /* labo1-2 */ = {
 			isa = PBXGroup;
 			children = (
+				B60A0C9F2AAE82F70078D45D /* AppDataModel.xcdatamodeld */,
 				B6A581612A7B21A700103E04 /* Info.plist */,
 				B6A581842A7B226500103E04 /* Model */,
 				B6A5818D2A7B243A00103E04 /* Ressources */,
@@ -170,7 +171,6 @@
 			children = (
 				B6A5815E2A7B21A700103E04 /* LaunchScreen.storyboard */,
 				B6A581592A7B21A600103E04 /* Main.storyboard */,
-				B60A0C9F2AAE82F70078D45D /* AppDataModel.xcdatamodeld */,
 			);
 			path = Views;
 			sourceTree = "<group>";
