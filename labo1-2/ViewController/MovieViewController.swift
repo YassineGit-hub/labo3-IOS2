@@ -21,6 +21,7 @@ class MovieViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
         movieDownloader.getRandomMovie { movie in
             guard let movie = movie else { return }
@@ -99,7 +100,19 @@ class MovieViewController: UIViewController {
     }
 
     func saveScore(score: Int) {
-        guard let name = userName, let context = context else { return }
+        print("saveScore() has been called.")
+
+        if userName == nil {
+            print("userName is nil.")
+        }
+        
+        if context == nil {
+            print("context is nil.")
+        }
+
+        guard let name = userName, let context = context else {
+            return
+        }
         let gameType = "Movie Title"
         Score.saveIfHighest(name: name, value: Int16(score), gameType: gameType, context: context)
         print("Saving score for \(name) with value \(score) for game \(gameType).")
