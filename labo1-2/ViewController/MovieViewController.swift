@@ -100,20 +100,10 @@ class MovieViewController: UIViewController {
     }
 
     func saveScore(score: Int) {
-        print("saveScore() has been called.")
-
-        if userName == nil {
-            print("userName is nil.")
-        }
-        
-        if context == nil {
-            print("context is nil.")
-        }
-
         guard let name = userName, let context = context else {
             return
         }
-        let gameType = "Movie Title"
+        let gameType = "Titre de films"
         Score.saveIfHighest(name: name, value: Int16(score), gameType: gameType, context: context)
         print("Saving score for \(name) with value \(score) for game \(gameType).")
     }

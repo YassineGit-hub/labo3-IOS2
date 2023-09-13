@@ -23,15 +23,16 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         print("Starting to fetch scores...")
 
-        movieScores = Score.fetchTopScores(for: "Movie Title", limit: 5, context: context)
-        wordScores = Score.fetchTopScores(for: "Dictionnary Word", limit: 5, context: context)
+        movieScores = Score.fetchTopScores(for: "Titre de films", limit: 5, context: context)
+        wordScores = Score.fetchTopScores(for: "Mots", limit: 5, context: context)
         
-        print("Fetched scores for Movie Title: \(movieScores.map { "\($0.username) - \($0.score)" }.joined(separator: ", "))")
-        print("Fetched scores for Dictionnary Word: \(wordScores.map { "\($0.username) - \($0.score)" }.joined(separator: ", "))")
+        print("Fetched scores for Titre de films: \(movieScores.map { "\($0.username) - \($0.score)" }.joined(separator: ", "))")
+        print("Fetched scores for Mots: \(wordScores.map { "\($0.username) - \($0.score)" }.joined(separator: ", "))")
 
         tableView.reloadData()
         print("Finished fetching scores.")
     }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         print("numberOfSections called.")

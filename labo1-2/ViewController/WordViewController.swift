@@ -14,7 +14,8 @@ class WordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
 
         jeu.startNewGame { success in
             if success {
@@ -76,8 +77,10 @@ class WordViewController: UIViewController {
 
     
     func saveScore(score: Int) {
-        guard let name = userName, let context = context else { return }
-        let gameType = "Dictionnary Word"
+        guard let name = userName, let context = context else {
+            return
+        }
+        let gameType = "Mots"
         Score.saveIfHighest(name: name, value: Int16(score), gameType: gameType, context: context)
         print("Saving score for \(name) with value \(score) for game \(gameType).")
     }
