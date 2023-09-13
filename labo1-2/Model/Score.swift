@@ -2,8 +2,8 @@ import Foundation
 import CoreData
 
 public class Score: NSManagedObject {
-    @NSManaged public var name: String
-    @NSManaged public var value: Int16
+    @NSManaged public var username: String
+    @NSManaged public var score: Int16
     @NSManaged public var gameType: String
 }
 
@@ -11,14 +11,14 @@ extension Score {
     static func saveIfHighest(name: String, value: Int16, gameType: String, context: NSManagedObjectContext) {
         let fetchRequest = NSFetchRequest<Score>(entityName: "Score")
         fetchRequest.predicate = NSPredicate(format: "gameType == %@", gameType)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "value", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "score", ascending: false)]
         fetchRequest.fetchLimit = 1
         
         do {
             let highestScores = try context.fetch(fetchRequest)
             
             if let highestScore = highestScores.first {
-                if value > highestScore.value {
+                if value > highestScore.score {
                     save(name: name, value: value, gameType: gameType, context: context)
                 }
             } else {
@@ -30,25 +30,25 @@ extension Score {
     }
     
     private static func save(name: String, value: Int16, gameType: String, context: NSManagedObjectContext) {
-        let score = Score(context: context)
-        score.name = name
-        score.value = value
-        score.gameType = gameType
+        let newScore = Score(context: context)
+        newScore.username = name
+        newScore.score = value
+        newScore.gameType = gameType
         
         do {
             try context.save()
+            print("Saved new score: \(name) - \(value) for game type: \(gameType)")
         } catch {
             print("Failed to save score: \(error)")
         }
     }
     
+    
+    
     static func fetchTopScores(for gameType: String, limit: Int = 5, context: NSManagedObjectContext) -> [Score] {
-     
-
-        
         let fetchRequest = NSFetchRequest<Score>(entityName: "Score")
         fetchRequest.predicate = NSPredicate(format: "gameType == %@", gameType)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "value", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "score", ascending: false)]
         fetchRequest.fetchLimit = limit
         
         do {

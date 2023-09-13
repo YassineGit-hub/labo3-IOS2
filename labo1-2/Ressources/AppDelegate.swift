@@ -11,9 +11,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let container = NSPersistentContainer(name: "AppDataModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
+                print("Error setting up Core Data stack: \(error), \(error.userInfo)")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
+            } else {
+                print("Successfully set up Core Data stack.")
             }
         })
+
         return container
     }()
 

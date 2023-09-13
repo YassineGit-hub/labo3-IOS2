@@ -100,9 +100,12 @@ class MovieViewController: UIViewController {
 
     func saveScore(score: Int) {
         guard let name = userName, let context = context else { return }
-        Score.saveIfHighest(name: name, value: Int16(score), gameType: "Movie Title", context: context)
+        let gameType = "Movie Title"
+        Score.saveIfHighest(name: name, value: Int16(score), gameType: gameType, context: context)
+        print("Saving score for \(name) with value \(score) for game \(gameType).")
     }
-    
+
+              
 
 }
 

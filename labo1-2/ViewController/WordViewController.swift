@@ -76,8 +76,11 @@ class WordViewController: UIViewController {
     
     func saveScore(score: Int) {
         guard let name = userName, let context = context else { return }
-        Score.saveIfHighest(name: name, value: Int16(score), gameType: "Dictionnary Word", context: context)
+        let gameType = "Dictionnary Word"
+        Score.saveIfHighest(name: name, value: Int16(score), gameType: gameType, context: context)
+        print("Saving score for \(name) with value \(score) for game \(gameType).")
     }
+
 
 }
 
