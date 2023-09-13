@@ -6,7 +6,7 @@ struct Movie: Codable {
     let Genre: String?
     let Director: String?
     let Actors: String?
-    let Rated: String? // Le champ "Rating" est souvent nommé "imdbRating" dans les API, mais vérifiez selon votre source de données.
+    let Rated: String? 
 }
 
 struct MovieDownloader {

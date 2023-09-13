@@ -19,7 +19,7 @@ class JeuPendu {
     private init() {}
     
     private let maxErreur: Int = 6
-    private let maxScore: Int = 100 // Added maxScore
+    private let maxScore: Int = 100 
     private var nbErreurs: Int = 0
     private var titreADeviner: [Character] = []
     private var indexTrouves: [Bool] = []
