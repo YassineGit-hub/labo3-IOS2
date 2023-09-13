@@ -19,6 +19,7 @@ class JeuPendu {
     private init() {}
     
     private let maxErreur: Int = 6
+    private let maxScore: Int = 100 // Added maxScore
     private var nbErreurs: Int = 0
     private var titreADeviner: [Character] = []
     private var indexTrouves: [Bool] = []
@@ -109,14 +110,12 @@ class JeuPendu {
         return nil
     }
     
-    // Additional function to access filmADeviner
     func currentMovie() -> Movie? {
         return filmADeviner
     }
     
-    
     func currentScore() -> Int {
-        return maxErreur - nbErreurs
+        return maxScore - (nbErreurs * maxScore / maxErreur) // Updated score calculation
     }
     
     func recommencerJeu() {
@@ -126,5 +125,5 @@ class JeuPendu {
         lettresUtilisateurs = []
         filmADeviner = nil
     }
-
 }
+
